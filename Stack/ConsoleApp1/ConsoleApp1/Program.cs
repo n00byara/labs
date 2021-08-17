@@ -6,12 +6,29 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            int[] arr = new[] { 1, 2, 3 };
-            Stack stack = new Stack(arr);
+
+
+
+            Stack<int> stack = new Stack<int>();
+
             stack.Push(1);
-            stack.Push(0);
-            stack.Log();
+            stack.Push(10);
+            Console.WriteLine(stack.Contains(3));
+            
+            
+
             Console.ReadKey();
         }
+
+        static void Start()
+        {
+            Console.WriteLine("введите очередь(стек) разделяя элементы пробелами:");
+            string[] consoleWords = Console.ReadLine().Split(' ');
+            
+            Console.ReadKey();
+        }
+
+
+
     }
 }

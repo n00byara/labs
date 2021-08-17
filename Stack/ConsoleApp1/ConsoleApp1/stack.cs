@@ -6,32 +6,46 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class Stack
+    class Stack<T>
     {
 
-        int[] _quine;
+        T[] _stack = new T[0];
+        public int count { get; private set; } = 0;
+        
 
-        public Stack(int[] buffer) 
+        private void Update(int counter)
         {
-            _quine = buffer;
+            count += counter;
+            Array.Resize(ref _stack, _stack.Length + counter);
         }
 
-        private void Update()
+        public void Push(T elem)
         {
-            Array.Resize(ref _quine, _quine.Length + 1);
+            Update(1);
+            _stack[^1] = elem;
         }
-
-        public void Push(int number)
+        public T Pop()
         {
-            Update();
-            _quine[^1] = number;
+            T elem = _stack[^1];
+            Update(-1);
+            return elem;
         }
         
+        public bool Contains(T elem)
+        {
+            return Array.Exists(_stack, i => i.Equals(elem) );
+        }
+
+        public T Peek()
+        {
+            return _stack[^1];
+        }
+
         public void Log()
         {
-            for(int i = 0; i < _quine.Length; i++)
+            for(int i = 0; i < _stack.Length; i++)
             {
-                Console.WriteLine(_quine[i]);
+                Console.WriteLine(_stack[i]);
             }
         }
         
